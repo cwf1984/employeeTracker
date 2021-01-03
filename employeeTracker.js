@@ -24,31 +24,31 @@ function start() {
 
         switch( answer.action ) {
 
-            case "Add_Department":
+            case "Add a Department":
                 addDepartment();
                 break;
 
-            case "Add_Role":
+            case "Add a Role":
                 addRole();
                 break;
             
-            case "Add_Employee":
+            case "Add an Employee":
                 addEmployee();
                 break;
 
-            case "Update_Employee_Role":
+            case "Update an Employee Role":
                 updateRole();
                 break;
 
-            case "View_Departments":
+            case "View All Departments":
                 viewAllDepartments();
                 break;
 
-            case "View_Roles":
+            case "View All Roles":
                 viewAllRoles();
                 break;
 
-            case "View_Employees":
+            case "View All Employees":
                 viewAllEmployees();
                 break;
             
@@ -152,9 +152,15 @@ function addEmployee() {
             message: "Who is their manager?",
             // choices: ,
         }
-    ]).then
+    ]).then( ( answer ) => {
+        addEmployee();
+        if (err) throw err;
+        console.log("Your new employee has been added!");
+        start();
     })
-    // access other employees and get manager id
+})
+
+    // access other employees to find all managers and get manager id
 
     //ask for first name
     //ask for last name
@@ -165,6 +171,11 @@ function addEmployee() {
 };
 
 function updateRole() {
+
+    //access all employees
+    //pick employee to update
+    //choose new role from list
+    
 
 };
 
