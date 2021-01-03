@@ -6,7 +6,7 @@ const cTable = require("console.table");
 const logo = require("asciiart-logo");
 
 function start() {
-    inquirer.prompt({
+    return inquirer.prompt({
         name: "whatToDo",
         type: "list",
         message: "What would you like to do?",
@@ -20,7 +20,7 @@ function start() {
             "View_Employees",
             "Exit"
         ]
-    }).then((answer) => {
+    }).then( function(answer) {
 
         switch( answer.action ) {
 
@@ -55,24 +55,26 @@ function start() {
             default:
                 connection.end();
 
+
         }
 
     })
 };
+
 
 // start();
 
 
 function addDepartment() {
     
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             name: "addDept",
             type: "input",
             message: "What department do you want to add?"
         }
     ]).then( ( answer ) => {
-        index.addDepartment();
+        addDepartment();
         if (err) throw err;
         console.log("Department added successfully!");
         start();
@@ -120,6 +122,46 @@ function addRole() {
 
 function addEmployee() {
 
+    //get role id
+    db.getRole().then( (role) => {
+        const roleList = role.map( (role) => ({
+            value: role.id,
+            name: role.title
+        }) )
+
+    inquirer.prompt([
+        {
+            name: "firstName",
+            type: "input",
+            message: "What is their first name?"
+        },
+        {
+            name: "lastName",
+            type: "input",
+            message: "What is their last name?"
+        },
+        {
+            name: "empRole",
+            type: "list",
+            message: "What is their role?",
+            choices: roleList
+        },
+        {
+            name: "empManager",
+            type: "list",
+            message: "Who is their manager?",
+            // choices: ,
+        }
+    ]).then
+    })
+    // access other employees and get manager id
+
+    //ask for first name
+    //ask for last name
+    //ask for role (in list)
+    //ask for manager (in list)
+    //all managers in own table
+
 };
 
 function updateRole() {
@@ -154,3 +196,5 @@ function viewAllEmployees() {
 
 };
 
+
+start();

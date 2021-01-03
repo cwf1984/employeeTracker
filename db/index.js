@@ -27,6 +27,10 @@ module.exports = {
 
     addRole(answer) {
         return connection.query( "INSERT INTO role SET ? ?", answer );
+    },
+
+    addEmployee( answer ) {
+        return connection.query( "INSERT INTO employee SET ? ?", answer);
     }
 
 };

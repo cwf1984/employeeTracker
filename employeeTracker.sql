@@ -6,14 +6,14 @@ USE employeeTracker_db;
 
 CREATE TABLE department (
     id INTEGER(10) AUTO_INCREMENT NOT NULL,
-    name VARCHAR (30),
+    dept_name VARCHAR (30),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE role (
     id INTEGER (10) AUTO_INCREMENT NOT NULL,
     title VARCHAR (30),
-    salary INTEGER (20) DECIMAL,
+    salary DECIMAL (10, 4),
     department_id INTEGER (10),
     PRIMARY KEY(id)
 );
@@ -28,7 +28,7 @@ CREATE TABLE employee (
 );
 
 
-INSERT INTO department (name) VALUES ();
+INSERT INTO department (dept_name) VALUES ();
 
 INSERT INTO role (title, salary, department_id) VALUES ();
 
