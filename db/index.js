@@ -1,6 +1,7 @@
 const connection = require("./connection");
 
 module.exports = {
+
     getDepartments() {
 
         return connection.query( "SELCT * FROM department" );

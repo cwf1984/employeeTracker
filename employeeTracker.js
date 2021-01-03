@@ -1,8 +1,9 @@
 const db = require("./db");
 const connection = require("./db/connection");
+const functions = require("./db/index");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
-const logo = require('asciiart-logo');
+const logo = require("asciiart-logo");
 
 function start() {
     inquirer.prompt({
@@ -25,31 +26,31 @@ function start() {
 
             case "Add_Department":
                 addDepartment();
-                return;
+                break;
 
             case "Add_Role":
                 addRole();
-                return;
+                break;
             
             case "Add_Employee":
                 addEmployee();
-                return;
+                break;
 
             case "Update_Employee_Role":
                 updateRole();
-                return;
+                break;
 
             case "View_Departments":
                 viewAllDepartments();
-                return;
+                break;
 
             case "View_Roles":
                 viewAllRoles();
-                return;
+                break;
 
             case "View_Employees":
                 viewAllEmployees();
-                return;
+                break;
             
             default:
                 connection.end();
@@ -59,23 +60,23 @@ function start() {
     })
 };
 
-start();
+// start();
 
 
 function addDepartment() {
     
     inquirer.prompt([
         {
-            name: "deptName",
+            name: "addDept",
             type: "input",
             message: "What department do you want to add?"
         }
-    ]).then( (  ) => {
-        addDepartment();
+    ]).then( ( answer ) => {
+        index.addDepartment();
         if (err) throw err;
         console.log("Department added successfully!");
         start();
-    })
+    });
 
 };
 
@@ -106,7 +107,7 @@ function addRole() {
                 type: "input",
                 message: "What is the salary?"
             }
-        ]).then( ( ) => {
+        ]).then( ( answer ) => {
             addRole();
             if (err) throw err;
             console.log("That role has been added!");
