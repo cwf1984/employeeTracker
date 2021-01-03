@@ -2,7 +2,7 @@ const db = require("./db");
 const connection = require("./db/connection");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
-const logo = require("asciiart-logo");
+const logo = require('asciiart-logo');
 
 function start() {
     inquirer.prompt({
@@ -59,14 +59,29 @@ function start() {
     })
 };
 
+start();
+
 
 function addDepartment() {
+    
+    inquirer.prompt([
+        {
+            name: "deptName",
+            type: "input",
+            message: "What department do you want to add?"
+        }
+    ]).then( (  ) => {
+        addDepartment();
+        if (err) throw err;
+        console.log("Department added successfully!");
+        start();
+    })
 
 };
 
 function addRole() {
 
-    db.getDepartments().then( (_departments) => {
+    db.getDepartments().then( (department) => {
 
         const departmentList = department.map( (department) => ({
             value: department.id,
@@ -91,7 +106,7 @@ function addRole() {
                 type: "input",
                 message: "What is the salary?"
             }
-        ]).then( (response) => {
+        ]).then( ( ) => {
             addRole();
             if (err) throw err;
             console.log("That role has been added!");

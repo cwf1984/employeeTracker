@@ -18,6 +18,12 @@ module.exports = {
         return connection.query( "SELECT * FROM employee" );
     },
 
+    addDepartment (answer) {
+
+        return connection.query( "INSERT INTO department SET ?", answer );
+
+    },
+
     addRole(answer) {
         return connection.query( "INSERT INTO role SET ? ?", answer );
     }
