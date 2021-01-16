@@ -4,13 +4,13 @@ module.exports = {
 
     getDepartments() {
 
-        return connection.query( "SELCT * FROM department" );
+        return connection.query( "SELCT * FROM department WHERE dept_Name" );
 
     },
 
     getRoles() {
 
-        return connection.query( "SELCT * FROM role" );
+        return connection.query( "SELECT * FROM role" );
 
     },
 
@@ -30,7 +30,11 @@ module.exports = {
     },
 
     addEmployee( answer ) {
-        return connection.query( "INSERT INTO employee SET ? ?", answer);
+        return connection.query( "INSERT INTO employee SET ? ? ? ?", answer);
+    },
+
+    getManager( answer ) {
+        return connection.query( "SELECT * FROM employees WHERE manager_id = NULL", answer);
     }
 
 };

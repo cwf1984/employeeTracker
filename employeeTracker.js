@@ -11,18 +11,19 @@ function start() {
         type: "list",
         message: "What would you like to do?",
         choices: [
-            "Add_Department",
-            "Add_Role",
-            "Add_Employee",
-            "Update_Employee_Role",
-            "View_Departments",
-            "View_Roles",
-            "View_Employees",
+            "Add a Department",
+            "Add a Role",
+            "Add an Employee",
+            "Update an Employee Role",
+            "View All Departments",
+            "View All Roles",
+            "View All Employees",
             "Exit"
         ]
     }).then( function(answer) {
+        console.log(answer);
 
-        switch( answer.action ) {
+        switch( answer.whatToDo ) {
 
             case "Add a Department":
                 addDepartment();
@@ -51,8 +52,9 @@ function start() {
             case "View All Employees":
                 viewAllEmployees();
                 break;
-            
+
             default:
+                console.log("hit default");
                 connection.end();
 
 
@@ -61,8 +63,6 @@ function start() {
     })
 };
 
-
-// start();
 
 
 function addDepartment() {
@@ -121,20 +121,29 @@ function addRole() {
 };
 
 function addEmployee() {
-
-    //get role id
-    db.getRole().then( (role) => {
+    db.getRoles().then( (role) => {
+        
         const roleList = role.map( (role) => ({
             value: role.id,
             name: role.title
-        }) )
+        }))
+
+    })
+
+    db.getManager().then( (managers) => {
+        const managerList = managers.map( (managers) => ({
+            value: role.id,
+            firstName: employee.first_name,
+            lastName: employee.last_name
+        }))
+    })
 
     inquirer.prompt([
         {
             name: "firstName",
-            type: "input",
-            message: "What is their first name?"
-        },
+            type: "input", 
+            message: "What is thier first name?"
+        }, 
         {
             name: "lastName",
             type: "input",
@@ -150,15 +159,18 @@ function addEmployee() {
             name: "empManager",
             type: "list",
             message: "Who is their manager?",
-            // choices: ,
+            choices: allManagers
         }
-    ]).then( ( answer ) => {
+    ]).then( (answer) => {
         addEmployee();
         if (err) throw err;
         console.log("Your new employee has been added!");
         start();
     })
-})
+
+}
+
+
 
     // access other employees to find all managers and get manager id
 
@@ -168,16 +180,22 @@ function addEmployee() {
     //ask for manager (in list)
     //all managers in own table
 
-};
 
-function updateRole() {
+
+// function updateRole() {
+
+    // db.getEmployees().then( (role) => {
+    //     const roleList = role.map( (role) => ({
+    //         value: role.id,
+    //         name: role.title
+    //     }) );
 
     //access all employees
     //pick employee to update
     //choose new role from list
     
 
-};
+
 
 function viewAllDepartments() {
 

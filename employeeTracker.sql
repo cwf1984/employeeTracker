@@ -24,7 +24,8 @@ CREATE TABLE employee (
     last_name VARCHAR (30),
     role_id INTEGER (10),
     manager_id INTEGER (10),
-    PRIMARY KEY(id)
+    PRIMARY KEY(id), 
+    FOREIGN KEY(manager_id)
 );
 
 
