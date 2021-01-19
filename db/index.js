@@ -4,7 +4,7 @@ module.exports = {
 
     getDepartments() {
 
-        return connection.query( "SELCT * FROM department WHERE dept_Name" );
+        return connection.query( "SELECT * FROM department" );
 
     },
 

@@ -123,19 +123,24 @@ function addRole() {
 function addEmployee() {
     db.getRoles().then( (role) => {
         
-        const roleList = role.map( (role) => ({
+        const roleList = roles.map( (role) => {
+            return{
             value: role.id,
             name: role.title
-        }))
+        }
+
+        })
 
     })
 
     db.getManager().then( (managers) => {
-        const managerList = managers.map( (managers) => ({
-            value: role.id,
-            firstName: employee.first_name,
-            lastName: employee.last_name
-        }))
+        const managerList = managers.map( (manager) => {
+            return{
+                name: manager,  
+                value: role.id,
+                firstName: employee.first_name,
+                lastName: employee.last_name}
+        })
     })
 
     inquirer.prompt([
@@ -209,10 +214,11 @@ function viewAllDepartments() {
 function viewAllRoles() {
 
     db.getDepartments().then((results) => {
+        console.log(results);
        console.table(results);
-       start();
+       
     }); 
-
+    start();
 };
 
 function viewAllEmployees() {
